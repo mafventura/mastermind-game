@@ -59,7 +59,11 @@ body {
     height: 5vh;
 }
 
-.button:hover {
+#optionsDiv > button:hover {
+    cursor: pointer;
+}
+
+#guessDiv > button:hover {
     cursor: pointer;
 }
 
@@ -134,5 +138,3 @@ body {
     background-color: green;
     border-radius: 100%;
 }
-
-
