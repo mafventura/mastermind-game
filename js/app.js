@@ -8,6 +8,7 @@ let guess = []
 let code = []
 let colorChoice
 let tries = 0
+let win = false
 
 // * CACHED ELEMENTS
 const chooseBlue = document.getElementById('blue')
@@ -30,13 +31,9 @@ let codes = [code1, code2, code3, code4]
 
 const submit = document.getElementById('submit')
 const reset = document.getElementById('reset')
+const playAgain = document.getElementById('playAgain')
 
 const log = document.getElementById('log')
-
-// const guess1Message = document.getElementById('guess1Message')
-// const guess2Message = document.getElementById('guess2Message')
-// const guess3Message = document.getElementById('guess3Message')
-// const guess4Message = document.getElementById('guess4Message')
 
 //* EVENT LISTENERS
 
@@ -53,6 +50,7 @@ guess4.addEventListener('click', transferColor)
 
 submit.addEventListener('click', submitGuess)
 reset.addEventListener('click', resetGuess)
+playAgain.addEventListener('click', resetGame)
 
 
 
@@ -65,11 +63,11 @@ function getRandomIdx () {
     return randomIdx
 }
 
-console.log('this is the code', code);
-
 function compareCodes(code, guess) {
 
-    if (code  === guess) {
+    const isEqual = code.every((value, index) => value === guess[index]);
+
+    if (isEqual) {
         const message = document.createElement('p')
         message.innerText = `You got it!! That's the correct code :)`
         log.appendChild(message)
@@ -78,7 +76,7 @@ function compareCodes(code, guess) {
         code3.classList.add(code[2])
         code4.classList.add(code[3])
 
-    } else {
+    } else if (code !== guess) {
 
         for (let i = 0; i < 4; i++) {
             if (code[i] === guess[i]) {
@@ -87,7 +85,6 @@ function compareCodes(code, guess) {
                 message.innerText = `${guess[i]} in the position ${position} is the correct color in the correct spot`
                 log.appendChild(message)
                 let correctGuess = codes[i]
-                console.log(correctGuess);
                 correctGuess.classList.add(guess[i])
                 
             } else if (code.includes(guess[i]))  {
@@ -149,6 +146,8 @@ function transferColor(event) {
 
 function submitGuess() {
 
+    clearLog()
+
     guess = []
 
     colors.forEach((color)  => {
@@ -177,11 +176,12 @@ function submitGuess() {
 
     if (guess.length < 4) {
         window.alert('Not enough colors')
+        return
     }
 
     compareCodes(code, guess)
 
-}
+    }
 
 function resetGuess() {
     guess1.classList.remove(...colors)
@@ -189,13 +189,32 @@ function resetGuess() {
     guess3.classList.remove(...colors)
     guess4.classList.remove(...colors)
     guess = []
+    
+    clearLog()
+}
 
+function resetGame() {
+    code1.classList.remove(...colors)
+    code2.classList.remove(...colors)
+    code3.classList.remove(...colors)
+    code4.classList.remove(...colors)
+
+    resetGuess()
+
+    code = []
+
+    for (let i = 0; i < 4; i++) {
+        code.push(colors[getRandomIdx()])
+    }
+
+    console.log(code);
+}
+
+function clearLog() {
     let child = log.lastElementChild
 
     while (child) {
         log.removeChild(child)
         child = log.lastElementChild
     }
-    
 }
-
