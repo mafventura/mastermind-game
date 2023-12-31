@@ -59,6 +59,10 @@ body {
     height: 5vh;
 }
 
+.button:hover {
+    cursor: pointer;
+}
+
 #optionsDiv, #codeDiv, #guessDiv {
     width: 30vh;
     height: 25vh;
