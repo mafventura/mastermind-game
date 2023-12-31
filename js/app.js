@@ -76,7 +76,7 @@ function compareCodes(code, guess) {
         code3.classList.add(code[2])
         code4.classList.add(code[3])
 
-    } else if (code !== guess) {
+    } else {
 
         for (let i = 0; i < 4; i++) {
             if (code[i] === guess[i]) {
