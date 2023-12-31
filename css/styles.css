@@ -86,6 +86,10 @@ body {
     font-family: 'Roboto Mono', monospace;
 }
 
+#submitReset > button:hover {
+    cursor: pointer;
+}
+
 #blue  {
     background-color: blue;
     border-radius: 25%;
