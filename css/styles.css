@@ -64,10 +64,12 @@ body {
 
 #optionsDiv > button:hover {
     cursor: pointer;
+    border: 2px solid white;
 }
 
 #guessDiv > button:hover {
     cursor: pointer;
+    border: 2px solid white;
 }
 
 #optionsDiv, #codeDiv, #guessDiv {
