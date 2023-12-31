@@ -206,8 +206,6 @@ function resetGame() {
     for (let i = 0; i < 4; i++) {
         code.push(colors[getRandomIdx()])
     }
-
-    console.log(code);
 }
 
 function clearLog() {

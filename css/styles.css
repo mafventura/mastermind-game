@@ -145,3 +145,7 @@ body {
     background-color: green;
     border-radius: 25%;
 }
+
+p {
+    font-size: 14px;
+}
