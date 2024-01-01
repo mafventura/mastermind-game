@@ -60,6 +60,7 @@ body {
     width: 5vh;
     height: 5vh;
     border: 1px solid black;
+    transition: border 0.2s;
 }
 
 #optionsDiv > button:hover {
@@ -71,6 +72,18 @@ body {
     cursor: pointer;
     border: 2px solid white;
 }
+
+#guessDiv > button.active {
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+#optionsDiv > button.active {
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+
 
 #optionsDiv, #codeDiv, #guessDiv {
     width: 30vh;

@@ -37,11 +37,26 @@ const log = document.getElementById('log')
 
 //* EVENT LISTENERS
 
-chooseBlue.addEventListener('click', colorChoiceBlue)
-chooseRed.addEventListener('click', colorChoiceRed)
-chooseYellow.addEventListener('click', colorChoiceYellow)
-chooseOrange.addEventListener('click', colorChoiceOrange)
-chooseGreen.addEventListener('click', colorChoiceGreen)
+chooseBlue.addEventListener('click', function () {
+    colorChoiceBlue();
+    handleButtonClick(chooseBlue);
+});
+chooseRed.addEventListener('click', function () {
+    colorChoiceRed();
+    handleButtonClick(chooseRed);
+});
+chooseYellow.addEventListener('click', function () {
+    colorChoiceYellow();
+    handleButtonClick(chooseYellow);
+});
+chooseOrange.addEventListener('click', function () {
+    colorChoiceOrange();
+    handleButtonClick(chooseOrange);
+});
+chooseGreen.addEventListener('click', function () {
+    colorChoiceGreen();
+    handleButtonClick(chooseGreen);
+});
 
 guess1.addEventListener('click', transferColor)
 guess2.addEventListener('click', transferColor)
@@ -53,13 +68,14 @@ reset.addEventListener('click', resetGuess)
 playAgain.addEventListener('click', resetGame)
 
 
+//* FUNCTIONS
 
 for (let i = 0; i < 4; i++) {
     code.push(colors[getRandomIdx()])
 }
 
 function getRandomIdx () {
-    let randomIdx = Math.floor(Math.random() * 5)
+    let randomIdx = Math.floor(Math.random() * colors.length)
     return randomIdx
 }
 
@@ -190,10 +206,11 @@ function resetGuess() {
     guess4.classList.remove(...colors)
     guess = []
     
-    clearLog()
 }
 
 function resetGame() {
+    clearLog()
+
     code1.classList.remove(...colors)
     code2.classList.remove(...colors)
     code3.classList.remove(...colors)
@@ -209,10 +226,12 @@ function resetGame() {
 }
 
 function clearLog() {
-    let child = log.lastElementChild
-
-    while (child) {
-        log.removeChild(child)
-        child = log.lastElementChild
+    while (log.lastElementChild) {
+        log.removeChild(log.lastElementChild);
     }
+}
+
+function handleButtonClick(button) {
+    document.querySelectorAll('.button').forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
 }
